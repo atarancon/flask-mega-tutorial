@@ -1,3 +1,33 @@
 
-__pycache__/
+# Don't Track content of these file/folders
+
+#Environment variables 
 .flaskenv
+###################
+instance/
+node_modules/
+someOtherfolder/
+__pycache__/
+migrations/
+data.sqlite
+
+#compiled source #
+##################
+*.com
+*.class
+*.dll
+*.o
+*.so
+*.vscode/
+*.DS_Store
+*.pyc
+
+
+#Packages #
+##################
+# it's better to umpack these files and comit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.tar
+*.zip
