@@ -17,6 +17,7 @@ class UserModelCase(unittest.TestCase):
         self.app_context = self.app.app_context()
         self.app_context.push()
         db.create_all()
+        print("-------------done set up----------")
 
     def tearDown(self):
         db.session.remove()
