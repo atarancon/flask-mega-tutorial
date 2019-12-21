@@ -41,6 +41,19 @@ class User(db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
+    @classmethod
+    def find_by_identity(cls, identity):
+        """
+        Find a user by thier email or username
+        :param identity: Email or username 
+        :type identity: str
+        :return User object from databse
+        """
+        return User.query.filter(
+            (User.email == identity ) | User.username == identity).first()
+
+
+
 class Post (db.Model):
 
     __tablename__ = 'posts'

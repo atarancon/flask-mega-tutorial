@@ -14,6 +14,7 @@ class Config:
     #flask run -h localhost -p 8000 
     #overriding ip addess: local host and port number 5000 
     #SERVER_NAME = '127.0.0.1:8000'
+    
 
 class ProdConfig(Config):
     DEBUG = False
@@ -25,4 +26,8 @@ class DevConfig(Config):
     ENV  = 'development'
     TESTING = True
     SECRET_KEY = os.urandom(16)
+
+    # User.
+    SEED_ADMIN_EMAIL = 'dev@local.host'
+    SEED_ADMIN_PASSWORD = 'devpassword'
     
