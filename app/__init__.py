@@ -9,6 +9,9 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 
 
+from flask import render_template
+
+
 
 #create instances of the Flask extension ( flask-sqlalchemy , flask-login, etc.) in the global 
 #scope , but w/o any arguments passesd in. Theses instances are not attached to the application 
@@ -37,6 +40,7 @@ def create_app(config_filename = 'config.setting.DevConfig', settings_override=N
     initialize_extensions(app)
     register_blueprints(app)
 
+
    
 
     return app
@@ -60,8 +64,10 @@ def register_blueprints(app):
 
     #import 
     from app.users import user_blueprint
+    from app.core import core
     #register 
     app.register_blueprint(user_blueprint)
+    app.register_blueprint(core)
 
 
 def authentication(app , user_model):
