@@ -53,7 +53,25 @@ class User(db.Model):
         return User.query.filter(
           (User.email == identity) | (User.username == identity)).first()
 
+
+
     
+    def authenticated ( self , with_password = True, password=""):
+        """ 
+        Ensure a user is auntenicated by checking their password 
+        Optionally (In case of emergency access account without thier password)
+        :param with_password: Optionally check their password
+        :type with_password: bool
+        :param password: Optionally verify this as their password
+        :type password: str
+        :return: bool
+        """
+        if with_password:
+            return check_password_hash(self.password, password)
+
+        return True
+
+
 
 
 

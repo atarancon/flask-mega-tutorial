@@ -74,7 +74,7 @@ def authentication(app , user_model):
     """
     #the name of the login view 
     #get redirected
-    login_manager.login_view ='user.login'
+    login_manager.login_view ='users.login'
 
     #Fetch User from database
     @login_manager.user_loader
