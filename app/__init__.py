@@ -7,18 +7,26 @@ from flask_migrate import Migrate
 
 #import login 
 from flask_login import LoginManager
+from app.models import User
 
 
 from flask import render_template
+
+#extension 
+
+from microblog.extensions import  (
+    db,
+    login_manager,
+    migrate
+
+)
 
 
 
 #create instances of the Flask extension ( flask-sqlalchemy , flask-login, etc.) in the global 
 #scope , but w/o any arguments passesd in. Theses instances are not attached to the application 
 # at this point 
-db = SQLAlchemy()
-migrate = Migrate()
-login_manager = LoginManager()
+#at extension.py
 
 
 def create_app(config_filename = 'config.setting.DevConfig', settings_override=None):
@@ -39,7 +47,9 @@ def create_app(config_filename = 'config.setting.DevConfig', settings_override=N
     
     initialize_extensions(app)
     register_blueprints(app)
+    authentication(app , User)
 
+    
 
    
 
@@ -49,9 +59,10 @@ def initialize_extensions(app):
     #Sice application instance created by this point , pass Flask 
     #extensions instance to bind it to the flask instance (app)
     db.init_app(app)
+    login_manager.init_app(app)
     migrate.init_app(app,db)
 
-    login_manager.init_app(app)
+    
 
     #Flask-login cofiguration
     #import models here

@@ -1,7 +1,7 @@
 #grab the initailization __init__ file from app 
-from app import create_app
+from app.app import create_app
 #shell helper 
-from app import db
+from extensions import db  
 #create a models table
 from app.models import User , Post , Comment
 
