@@ -1,20 +1,13 @@
 from flask import Flask
 #import Flask class
 
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-
-
-#import login 
-from flask_login import LoginManager
 from app.models import User
 
 
-from flask import render_template
 
 #extension 
 
-from microblog.extensions import  (
+from app.extensions import  (
     db,
     login_manager,
     migrate
