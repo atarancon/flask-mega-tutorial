@@ -5,7 +5,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 
-
+#make sure importing only one kind of module
+# like app.models everywhere
 print('importing module %s' % __name__)
 
 
@@ -83,7 +84,6 @@ class Post (db.Model):
 
     __tablename__ = 'posts'
 
-    #__table_args__ = {'extend_existing': True}
     
 
 
