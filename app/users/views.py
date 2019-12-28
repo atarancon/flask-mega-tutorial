@@ -66,6 +66,10 @@ def signup():
 
     if form.validate_on_submit():
         print (" youm made it ")
+
+    
+
+    return render_template('users/signup.html' , form = form)
     
 
 #logout 
