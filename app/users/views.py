@@ -30,12 +30,24 @@ def login():
     if form.validate_on_submit():
         u = User.find_by_identity(request.form.get('email'))
 
-        if u :
+        if u and u.authenticated(password=request.form.get("password")):
             
             print (" YOU MADE IT")
             login_user(u)
+
+            #handle optional redirecting
+            next_url = request.form.get('next')
+
+            #caution checking path of url
+            #if next_url:
+                #return redirect(safe_next_url(next_url))
+        
             return  redirect(url_for('core.index'))
-    
+
+        else:
+            flash("Email or password is incorrect.", "error")
+            print("error")
+            
 
 
     return render_template('users/login.html' , form = form )

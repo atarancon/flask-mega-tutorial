@@ -70,7 +70,7 @@ class User(db.Model, UserMixin):
         :return: bool
         """
         if with_password:
-            return check_password_hash(self.password, password)
+            return check_password_hash(self.password_hash, password)
 
         return True
 
