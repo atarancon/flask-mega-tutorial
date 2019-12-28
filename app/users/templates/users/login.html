@@ -18,8 +18,27 @@
 {% call f.form_group (form.password) %}
 {% endcall %}
 
-{% call f.form_group (form.submit) %}
-{% endcall %}
+<div class="row">
+
+    <div class="col-md-6">
+         <button type="submit" class="btn btn-primary btn-block">
+         Log in         
+        </button>
+
+    </div>
+
+    <div class="col-md-6">
+        <div class="visible-xs visble-sm sm-margin-top"></div>
+        <a href="{{ url_for('users.signup') }}"
+            class="btn btn-default btn-block">
+            Register
+        </a>
+    </div>
+</div>
+
+
+
+
 
 
 {% endcall %}

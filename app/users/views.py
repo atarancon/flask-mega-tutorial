@@ -7,7 +7,8 @@ from flask import (
 )
 #blueprint comes in 
 from app.users.forms import (
-    LoginForm   
+    LoginForm,
+    RegistrationForm
 )
 
 from flask_login import (
@@ -21,6 +22,7 @@ from . import  user_blueprint
 
 #from user_blueprint directory import app variable instance
 
+#sign in
 @user_blueprint.route ('/login' , methods=["GET","POST"])
 def login():
     form = LoginForm()
@@ -39,7 +41,14 @@ def login():
     return render_template('users/login.html' , form = form )
 
 
+#register
+@user_blueprint.route("/signup" , methods =["GET","POST"])
+def signup():
+    form = RegistrationForm()
 
+    if form.validate_on_submit():
+        print (" youm made it ")
+    
 
 #logout 
 @user_blueprint.route('/logout')
