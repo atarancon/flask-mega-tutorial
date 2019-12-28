@@ -1,3 +1,9 @@
+
+
+from lib.safe_next_url import safe_next_url
+
+
+
 from flask import (
     render_template,
     request,
@@ -25,7 +31,7 @@ from . import  user_blueprint
 #sign in
 @user_blueprint.route ('/login' , methods=["GET","POST"])
 def login():
-    form = LoginForm()
+    form = LoginForm(next = request.args.get('next'))
 
     if form.validate_on_submit():
         u = User.find_by_identity(request.form.get('email'))
@@ -39,8 +45,8 @@ def login():
             next_url = request.form.get('next')
 
             #caution checking path of url
-            #if next_url:
-                #return redirect(safe_next_url(next_url))
+            if next_url:
+                return redirect(safe_next_url(next_url))
         
             return  redirect(url_for('core.index'))
 
