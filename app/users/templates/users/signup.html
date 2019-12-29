@@ -18,7 +18,13 @@
      {% call f.form_group(form.email, css_class='sm-margin-bottom' , placeholder="Email Address" ) %}
     {% endcall %}
 
-    {% call f.form_group(form.password, css_class='sm-margin-bottom') %} 
+    {% call f.form_group(form.username, css_class='sm-margin-bottom' , placeholder= 'username' ) %}
+    {% endcall %}
+
+     {% call f.form_group(form.password, css_class='sm-margin-bottom') %} 
+    {% endcall %}
+
+    {% call f.form_group(form.pass_conf , css_class='sm-margin-bottom') %} 
     {% endcall %}
 
     <div class="row">
@@ -28,7 +34,7 @@
                     Register
             </button>
 
-        <div>
+        </div>
 
         <div class="col-md-6" >
 
@@ -39,7 +45,7 @@
                     Sign In           
                 </a>
 
-        <div>
+        </div>
 
     </div>
 

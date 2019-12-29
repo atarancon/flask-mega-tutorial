@@ -1,11 +1,11 @@
-from flask_wtf import Form 
+from flask_wtf import FlaskForm 
 from wtforms import StringField, PasswordField, ValidationError , SubmitField, HiddenField
 from wtforms.validators import DataRequired, EqualTo, Email
 
 from app.models import User
 
 
-class RegistrationForm(Form):
+class RegistrationForm(FlaskForm):
     email = StringField('Email',validators=[DataRequired()])
     username = StringField('UserName',validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired(),EqualTo("pass_conf",message="Password must match")])
@@ -22,7 +22,7 @@ class RegistrationForm(Form):
             raise ValidationError("Your username has been already register")
 
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
     next = HiddenField()
     email = StringField('Email',validators=[DataRequired(),Email()])
     password = PasswordField('Password',validators=[DataRequired()])

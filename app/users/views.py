@@ -22,7 +22,10 @@ from flask_login import (
     logout_user,
     login_user
 )
+
 from app.models import User
+
+from app.extensions import db
 
 from . import  user_blueprint
 
@@ -65,7 +68,20 @@ def signup():
     form = RegistrationForm()
 
     if form.validate_on_submit():
-        print (" youm made it ")
+        #add user
+        user = User(email = form.email.data, 
+        username = form.username.data, 
+        password= form.password.data)
+
+        #save
+        db.session.add(user)
+        db.session.commit()
+
+        #thanks for registering
+        flash("Awesome, Thanks for registering")
+
+        return redirect(url_for("users.login"))
+
 
     
 
