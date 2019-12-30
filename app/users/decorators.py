@@ -14,7 +14,7 @@ def permission_required():
     def decorator(f):
         @wraps(f)
         def decorated_function(*args, **kwargs):
-            if current_user.is_admin()  == False :
+            if current_user.is_admin  == False :
                 flash('You do not have permission to do that.', 'error')
                 return redirect('/')
 
