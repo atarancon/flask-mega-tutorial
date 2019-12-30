@@ -1,0 +1,4 @@
+
+    [console_scripts]
+    cli_main=cli.cli_main:cli
+    
