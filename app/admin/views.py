@@ -16,6 +16,8 @@ from flask_login import (
 from app.users.decorators import permission_required
 from app.admin.models import Dashboard
 
+from app.models import User
+
 from . import admin 
 
 
@@ -30,6 +32,11 @@ def before_request():
 def dashboard():
     group_and_count_users = Dashboard.group_count_users()
     return render_template ('admin/page/dashboard.html' , group_and_count_users=group_and_count_users)
+
+@admin.route('/users', defaults={'page': 1} )
+@admin.route('/users/page/<int:page>')
+def users(page):
+    users = User.query.all()
 
 
 
