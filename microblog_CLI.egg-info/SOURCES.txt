@@ -1,7 +1,6 @@
 setup.py
-cli/__init__.py
-cli/cli_main.py
-cli/command/__init__.py
+cli_package/__init__.py
+cli_package/cli_main.py
 microblog_CLI.egg-info/PKG-INFO
 microblog_CLI.egg-info/SOURCES.txt
 microblog_CLI.egg-info/dependency_links.txt

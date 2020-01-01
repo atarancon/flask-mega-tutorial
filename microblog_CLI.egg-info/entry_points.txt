@@ -1,4 +1,4 @@
 
-    [console_scripts]
-    cli_main=cli.cli_main:cli
+        [console_scripts]
+        cli_main=cli_package.cli_main:hello
     
