@@ -15,6 +15,6 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        cli_main=cli_package.cli_main:hello
+        cli_main=cli_package.:hello
     """,
 )
