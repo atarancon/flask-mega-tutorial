@@ -1,8 +1,16 @@
 import click 
+import subprocess
 
 @click.command()
-def cli():
+@click.argument('path', default='app')
+def cli(path):
     """
-    Run cov  for this coverage test
+    Run a test  for coverage report
+
+    :param path: Test coverage path 
+    :return: Subprocess call result
     """
-    click.echo("Coverage command activated")
+    cmd = 'py.test  --cov-report term-missing --cov {0}'.format(path)
+    print(cmd)
+    return subprocess.call(cmd, shell=True)
+

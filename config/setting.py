@@ -13,7 +13,8 @@ class Config:
     #set website ip address: local host and port number server listen to 8000
     #flask run -h localhost -p 8000 
     #overriding ip addess: local host and port number 5000 
-    #SERVER_NAME = '127.0.0.1:8000'
+    #py.test purposes
+    #SERVER_NAME = 'localhost:8000'
     
 
 class ProdConfig(Config):
