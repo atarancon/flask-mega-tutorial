@@ -35,7 +35,10 @@ class DevConfig(Config):
 class TestConfig(Config):
     DEBUG = False
     TESTING = True 
+    SECRET_KEY = os.urandom(16)
     WTF_CSRF_ENABLED = False
+    SEED_ADMIN_EMAIL = 'dev@local.host'
+    SEED_ADMIN_PASSWORD = 'devpassword'
     
 
     

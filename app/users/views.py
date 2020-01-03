@@ -54,7 +54,7 @@ def login():
             return  redirect(url_for('core.index'))
 
         else:
-            flash("Email or password is incorrect.", "error")
+            flash("Email or password is incorrect.", "warning")
             print("error")
             
 
