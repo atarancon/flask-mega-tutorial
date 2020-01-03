@@ -11,6 +11,10 @@ __pycache__/
 migrations/
 data.sqlite
 
+#coverage test
+.coverage
+
+
 #compiled source #
 ##################
 *.com
