@@ -1,4 +1,5 @@
 import pytest 
+from config import setting
 from app.app import create_app
 
 
@@ -9,12 +10,13 @@ def app():
     Set up our flask test app, this gets executed only once
     :return: Flask app
     """
-    params = {
-        'DEBUG': False,
-        'TESTING': True,
-    }
+   
+    b_uri = '{0}_test'.format(setting.TestConfig.SQLALCHEMY_DATABASE_URI)
 
-    _app = create_app(settings_override=params)
+    setting.TestConfig.SQLALCHEMY_DATABASE_URI = b_uri
+
+    _app = create_app(config_filename = 'config.setting.TestConfig')
+    
 
     #Establish an application context before running the tests.
     ctx = _app.app_context()

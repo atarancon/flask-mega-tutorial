@@ -14,7 +14,7 @@ class Config:
     #flask run -h localhost -p 8000 
     #overriding ip addess: local host and port number 5000 
     #py.test purposes
-    #SERVER_NAME = 'localhost:8000'
+    SERVER_NAME = 'localhost:8000'
     
 
 class ProdConfig(Config):
@@ -31,4 +31,11 @@ class DevConfig(Config):
     # User.
     SEED_ADMIN_EMAIL = 'dev@local.host'
     SEED_ADMIN_PASSWORD = 'devpassword'
+
+class TestConfig(Config):
+    DEBUG = False
+    TESTING = True 
+    WTF_CSRF_ENABLED = False
+    
+
     
