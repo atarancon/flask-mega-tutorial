@@ -76,7 +76,8 @@ class TestSignup(ViewTestMixin):
         response = self.client.post(url_for("users.signup"), data=user, follow_redirects=False)
         assert response.status_code == 302
 
-        print(response['Location'])
+        assert response.location == url_for("users.login")
+        
 
 
 

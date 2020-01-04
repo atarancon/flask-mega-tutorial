@@ -3,6 +3,7 @@ from config import setting
 from app.app import create_app
 from app.extensions import db as _db
 from app.models import User
+from config.setting import TestConfig
 
 
 
@@ -18,7 +19,7 @@ def app():
     setting.TestConfig.SQLALCHEMY_DATABASE_URI = b_uri
 
     _app = create_app(config_filename = 'config.setting.TestConfig')
-    
+
 
     #Establish an application context before running the tests.
     ctx = _app.app_context()
@@ -88,12 +89,16 @@ def users(db):
 
     #delete all users 
     users = db.session.query(User).all()
-    db.session.delete(users)
+
+    #iterate through object
+    for user in users:
+        db.session.delete(user)
+
     db.session.commit()
 
     #create new ones 
     # Create new entries in the database
-    admin = User(app.config['SEED_ADMIN_EMAIL'],"admin",app.config['SEED_ADMIN_PASSWORD'],True)
+    admin = User(TestConfig.SEED_ADMIN_EMAIL,"admin",TestConfig.SEED_ADMIN_PASSWORD,True)
     user = User ( "one@one.com" , "one" , "password" )
 
     db.session.add(admin)
