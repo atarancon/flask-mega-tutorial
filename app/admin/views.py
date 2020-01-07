@@ -22,6 +22,10 @@ from . import admin
 
 from sqlalchemy import text
 
+from app.admin.forms import (
+    SearchForm
+)
+
 @admin.before_request
 @login_required
 @permission_required()
@@ -38,10 +42,11 @@ def dashboard():
 @admin.route('/users/page/<int:page>')
 def users(page):
     
+    search_form = SearchForm()
 
-    paginated_users = User.query.filter(User.search(request.args.get('q' , text('') ))).order_by(User.is_admin.desc()).paginate(page, 50, True)
+    paginated_users = User.query.filter(User.search( text(request.args.get('q')) )).order_by(User.is_admin.desc()).paginate(page, 50, True)
     
-    return render_template('admin/user/index.html', users=paginated_users)
+    return render_template('admin/user/index.html', users=paginated_users , form=search_form)
 
 
 
