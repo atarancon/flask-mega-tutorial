@@ -44,7 +44,7 @@ def users(page):
     
     search_form = SearchForm()
 
-    paginated_users = User.query.filter(User.search( text(request.args.get('q')) )).order_by(User.is_admin.desc()).paginate(page, 50, True)
+    paginated_users = User.query.filter(User.search( text(request.args.get('q' ,  '')) )).order_by(User.is_admin.desc()).paginate(page, 50, True)
     
     return render_template('admin/user/index.html', users=paginated_users , form=search_form)
 
