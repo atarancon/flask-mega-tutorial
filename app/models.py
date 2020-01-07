@@ -4,6 +4,8 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
+from sqlalchemy import or_
+
 
 #make sure importing only one kind of module
 # like app.models everywhere
@@ -55,6 +57,24 @@ class User(db.Model, UserMixin):
         """
         return User.query.filter(
           (User.email == identity) | (User.username == identity)).first()
+
+    @classmethod
+    def search(cls, query):
+        """
+        Search a resource by 1 or more fields.
+
+        :param query: Search query
+        :type query: str
+        :return: SQLAlchemy filter
+
+        """
+        if query == "":
+            return ''
+        
+        search_query = '%{0}%'.format(query)
+        search_chain = (User.email.ilike(search_query),
+                        User.username.ilike(search_query))
+        return or_(*search_chain)
 
 
 

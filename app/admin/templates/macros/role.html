@@ -1,0 +1,8 @@
+{% macro role_name(user) %} 
+    {% if user.is_admin %}
+        <h>ADMIN</h>
+    {% else %}
+        <h>MEMBER</h>
+    {% endif %}
+
+{% endmacro %}

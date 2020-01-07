@@ -11,6 +11,9 @@ __pycache__/
 migrations/
 data.sqlite
 
+#####configsql#########
+config/*.db_test
+
 #coverage test
 .coverage
 

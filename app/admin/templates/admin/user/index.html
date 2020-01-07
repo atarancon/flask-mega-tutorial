@@ -1,0 +1,66 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/users.html' as account %}
+{% import 'macros/role.html'  as role %}
+
+
+{% block title %} Admin - User / List {% endblock %}
+
+{% block body %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+            <label for="select_all"></label>
+            <input id="select_all" name="select_all" type="checkbox">
+            </th>
+            
+            <th class="col_header">
+
+                "name ^-"
+            </th>
+
+            <th class="col_header">
+
+
+                "Priviledge"
+        
+            </th>
+            
+
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for user in users.items %}
+        <tr>
+            <td>
+                <label for="bulk_ids"></label>
+                <input class="checkbox-item" id="bulk_ids" name="bulk_ids"
+                        type="checkbox" value="{{ user.id }}">
+            </td>
+            <td>
+                <div class="pull-left">
+                {{ account.role_icon_for(user)}}
+                </div>
+                <h4 class="media-heading"> {{ user.username }} </h4>
+
+                <p class="text-muted"> {{user.email}}</p>
+            </td>
+
+            <td>
+                {{ role.role_name(user) }}
+            </td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+
+</table>
+
+    
+
+
+
+
+{% endblock %}

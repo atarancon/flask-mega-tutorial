@@ -20,6 +20,7 @@ from app.models import User
 
 from . import admin 
 
+from sqlalchemy import text
 
 @admin.before_request
 @login_required
@@ -36,7 +37,11 @@ def dashboard():
 @admin.route('/users', defaults={'page': 1} )
 @admin.route('/users/page/<int:page>')
 def users(page):
-    users = User.query.all()
+    
+
+    paginated_users = User.query.filter(User.search(request.args.get('q' , text('') ))).order_by(User.is_admin.desc()).paginate(page, 50, True)
+    
+    return render_template('admin/user/index.html', users=paginated_users)
 
 
 
