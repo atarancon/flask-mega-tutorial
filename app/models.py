@@ -75,6 +75,16 @@ class User(db.Model, UserMixin):
         search_chain = (User.email.ilike(search_query),
                         User.username.ilike(search_query))
         return or_(*search_chain)
+    
+    @classmethod
+    def delete(self):
+        """
+        Delete a model instance.
+
+        :return: db.session.commit()'s result
+        """
+        db.session.delete(self)
+        return db.session.commit()
 
 
 

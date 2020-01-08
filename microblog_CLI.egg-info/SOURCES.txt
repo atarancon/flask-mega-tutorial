@@ -1,6 +1,9 @@
 setup.py
 cli_package/__init__.py
+cli_package/cli_main.py
 cli_package/cli_multi_command.py
+cli_package/group_command.py
+cli_package/group_context.py
 microblog_CLI.egg-info/PKG-INFO
 microblog_CLI.egg-info/SOURCES.txt
 microblog_CLI.egg-info/dependency_links.txt

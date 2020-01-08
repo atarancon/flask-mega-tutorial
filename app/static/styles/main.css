@@ -1,0 +1,6 @@
+li.disabled {
+    /* make the disbled link grayish */
+    color: gray;
+    /* diabled the pointer events */
+    pointer-events: none;
+}
