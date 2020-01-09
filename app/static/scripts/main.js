@@ -10,7 +10,7 @@ var bulkSelectors= {
     'selectAll' : '#select_all',
     'checkedItems': '.checkbox-item',
     'colheader' : 'th.col_header',
-    'selectedRow': 'warning',
+    'selectedRow': "alert alert-warning",
     'updateScope': '#scope',
     'bulkActions': '#bulk_actions'
 }
