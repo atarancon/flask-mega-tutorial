@@ -19,7 +19,7 @@
             <p> There are no users present, you ..  </p> 
         {% endif %}
     {% else %}
-
+        {% call f.form_tag('users.signup') %}    
         <table class="table table-striped">
 
             <thead>
@@ -39,6 +39,16 @@
 
                         "Priviledge"
                 
+                    </th>
+
+                    <th id="bulk_actions" colspan="2">
+                        <div class="form_inline">
+                            {{ f.field(bulk_form.scope, inline=True)}}
+                            <button type="submit"
+                                class="btn btn-danger btn-sm">
+                                Delete items
+                            </button>
+
                     </th>
                     
 
@@ -71,6 +81,8 @@
             </tbody>
 
         </table>
+    
+        {% endcall %}
 
     {{ items.paginate(users)}}
 

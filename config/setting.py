@@ -14,7 +14,7 @@ class Config:
     #flask run -h localhost -p 8000 
     #overriding ip addess: local host and port number 5000 
     #py.test purposes
-    SERVER_NAME = 'localhost:8000'
+    #SERVER_NAME = 'localhost:8000'
     
 
 class ProdConfig(Config):

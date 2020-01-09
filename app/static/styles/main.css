@@ -1,6 +1,24 @@
+
+
+/* ADMIN dashboard 
+_________________________________*/
+
 li.disabled {
     /* make the disbled link grayish */
     color: gray;
     /* diabled the pointer events */
     pointer-events: none;
+}
+
+th#bulk_actions {
+    display: none;
+    padding-bottom: 8px;
+}
+
+#scope {
+    margin-bottom: 0;
+    width: 160 px;
+    height : 29 px;
+    font-weight: 400;
+    font-size: 12px;
 }
