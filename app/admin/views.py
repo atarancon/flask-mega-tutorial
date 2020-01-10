@@ -10,7 +10,8 @@ from flask import (
 from flask_login import (
     login_required,
     logout_user,
-    login_user
+    login_user,
+    current_user
 )
 
 from app.users.decorators import permission_required
@@ -51,6 +52,24 @@ def users(page):
     return render_template('admin/user/index.html', users=paginated_users , form=search_form, bulk_form = bulk_form)
 
 
+@admin.route('/users/bulk_delete', methods=['POST'])
+def users_bulk_delete():
+    form = BulkDeleteForm()
+
+    if form.validate_on_submit():
+        ids = User.get_bulk_action_ids(request.form.get('scope'),
+                                                        request.form.getlist('bulk_ids'),
+                                                        omit_ids=[current_user.id],
+                                                        query=request.args.get('q',''))
+
+        print(ids)
+        delete_count = User.bulk_delete(ids)
+
+        flash('{0} were schedule to be deleted '.format(delete_count)), 'success'
+    else:
+        flash('No users were deleted','error')
+    
+    return redirect(url_for('admin.users'))
 
 
 

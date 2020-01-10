@@ -104,6 +104,63 @@ class User(db.Model, UserMixin):
 
         return True
 
+    @classmethod
+    def get_bulk_action_ids(cls, scope, ids, omit_ids=[], query=''):
+        """
+        Determine which IDs are to be modified.
+
+        :param scope: Affect all or only a subset of items 
+        :type scope: str
+        :param ids: List of ids to the modified 
+        :type ids: list 
+        :param omit_ids: Remove 1 or more IDs from the list
+        :type omit_ids: list
+        :type query:Search query (if applicable)
+        :type query: str
+        :return query: str
+        :return: list
+
+        """
+        omit_ids = map(str, omit_ids)
+        
+        
+
+        if scope == 'all_search_results':
+            #Change the scope to go from selected ids to all search results.
+            ids = cls.query.with_entities(cls.id).filter(cls.search(query))
+
+            #SQLAlchemy return back  a list of tuples, we want a list of str
+            ids = [ str(item[0]) for item in ids ]
+
+        #remove 1 or more items from list , thics could be useful in spots 
+        #where you may want to protect the current user for deleting themself 
+        #when buk deleting user accounts
+
+        
+        if omit_ids:
+            print("scure the current log in user")
+            ids = [ id for id in ids if id not in omit_ids]
+            print(list(omit_ids))
+        print("print ommited ids")
+        print(list(omit_ids))
+        return ids
+    
+
+    @classmethod
+    def bulk_delete(cls , ids):
+        """
+        Delete 1 or more model istances
+
+        :param ids: list of ids to be deleted 
+        :type ids: list
+        :return: Number of deleted instances 
+        """
+
+        delete_count = cls.query.filter(cls.id.in_(ids)).delete(synchronize_session=False)
+        db.session.commit()
+
+        return delete_count
+
 
 
 
