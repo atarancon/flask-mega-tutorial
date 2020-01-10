@@ -121,7 +121,12 @@ class User(db.Model, UserMixin):
         :return: list
 
         """
+
+        print('current user')
+        print(omit_ids)
+
         omit_ids = map(str, omit_ids)
+        omit_ids = list(omit_ids)
         
         
 
@@ -136,13 +141,16 @@ class User(db.Model, UserMixin):
         #where you may want to protect the current user for deleting themself 
         #when buk deleting user accounts
 
-        
+        print("List of ids to be deleted")
+        print(ids)
+        print("PROTECTING current user")
         if omit_ids:
             print("scure the current log in user")
-            ids = [ id for id in ids if id not in omit_ids]
-            print(list(omit_ids))
-        print("print ommited ids")
-        print(list(omit_ids))
+            ids = [id for id in ids if id not in omit_ids]
+        
+        print("ids without current user")
+        print(ids)
+        
         return ids
     
 
