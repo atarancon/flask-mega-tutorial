@@ -34,6 +34,24 @@ class TestUsers(ViewTestMixin):
         assert_status_with_message(200, response, '0 were schedule to be deleted ')
         new_count = User.query.count()
         assert old_count == new_count
+    
+    def test_all_search_result_nothing(self):
+        """ all search result code test """
+        old_count = User.query.count()
+
+        params = {
+            'bulk_ids' : [1],
+            'scope' : 'all_search_results'
+        }
+
+        self.login()
+        response = self.client.post(url_for('admin.users_bulk_delete'), 
+                                        data=params, follow_redirects=True)
+        
+        assert_status_with_message(200, response, '0 were schedule to be deleted ')
+        new_count = User.query.count()
+        assert old_count == new_count
+
 
     
 
