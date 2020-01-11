@@ -6,6 +6,9 @@ from datetime import datetime
 
 from sqlalchemy import or_
 
+from sqlalchemy import text
+
+
 
 #make sure importing only one kind of module
 # like app.models everywhere
@@ -132,7 +135,7 @@ class User(db.Model, UserMixin):
 
         if scope == 'all_search_results':
             #Change the scope to go from selected ids to all search results.
-            ids = cls.query.with_entities(cls.id).filter(cls.search(query))
+            ids = cls.query.with_entities(cls.id).filter(text(cls.search(query)))
 
             #SQLAlchemy return back  a list of tuples, we want a list of str
             ids = [ str(item[0]) for item in ids ]

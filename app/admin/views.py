@@ -65,7 +65,7 @@ def users_bulk_delete():
         print(ids)
         delete_count = User.bulk_delete(ids)
 
-        flash('{0} were schedule to be deleted '.format(delete_count)), 'success'
+        flash('{0} were schedule to be deleted '.format(delete_count), 'success')
     else:
         flash('No users were deleted','error')
     
