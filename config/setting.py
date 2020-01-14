@@ -3,8 +3,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
 
-    TESTING = os.environ.get('TESTING')
-    DEBUG = os.environ.get('DEBUG')
+    TESTING = os.environ.get('TESTING') or False
+    debug = os.environ.get('DEBUG') or   True
     SECRET_KEY = os.environ.get('SECRET_KEY')
     #set configuration for database location
     SQLALCHEMY_DATABASE_URI=os.environ.get('DATABASE_URL') or \
@@ -14,7 +14,7 @@ class Config:
     #flask run -h localhost -p 8000 
     #overriding ip addess: local host and port number 5000 
     #py.test purposes
-    SERVER_NAME = 'localhost:8000'
+    #SERVER_NAME = 'localhost:8000'
     
 
 class ProdConfig(Config):
@@ -22,10 +22,13 @@ class ProdConfig(Config):
     TESTING = False
 
 class DevConfig(Config):
-    #export FLASK_DEBUG=1
+    #export 
+    FLASK_DEBUG=1
     #give you pin 
-    ENV  = 'development'
-    TESTING = True
+    DEBUG = True
+    ENV='development'
+    #ENV  = 'development'
+    #TESTING = True
     SECRET_KEY = os.urandom(16)
 
     # User.

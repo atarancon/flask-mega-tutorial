@@ -195,9 +195,8 @@ class Post (db.Model):
     comments = db.relationship('Comment' , backref='post' , lazy = 'dynamic')
 
 
-    def __init__ (self , body , timestamp , user_id ):
+    def __init__ (self , body , user_id ):
         self.body = body 
-        self.timestamp = timestamp
         self.user_id = user_id
 
 
@@ -216,9 +215,8 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer , db.ForeignKey('posts.id'))
 
 
-    def __init__ (self , text , timestamp , user_id , post_id):
+    def __init__ (self , text , user_id , post_id):
         self.text = text 
-        self.timestamp = timestamp
         self.user_id = user_id 
         self.post_id = post_id 
 
