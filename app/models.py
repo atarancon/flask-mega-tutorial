@@ -189,13 +189,15 @@ class Post (db.Model):
     body = db.Column(db.Text, nullable = False)
     timestamp = db.Column(db.DateTime,index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    title = db.Column(db.String(140), default="GotLeftBehindUpgradeNullableFalse")
 
 
     #multiple comments 
     comments = db.relationship('Comment' , backref='post' , lazy = 'dynamic')
 
 
-    def __init__ (self , body , user_id ):
+    def __init__ (self , title, body , user_id ):
+        self.title = title
         self.body = body 
         self.user_id = user_id
 
