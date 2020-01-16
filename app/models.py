@@ -189,7 +189,8 @@ class Post (db.Model):
     body = db.Column(db.Text, nullable = False)
     timestamp = db.Column(db.DateTime,index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    title = db.Column(db.String(140), default="GotLeftBehindUpgradeNullableFalse")
+    title = db.Column(db.String(140), nullable = False)
+    #default="GotLeftBehindUpgradeNullableFalse"
 
 
     #multiple comments 
