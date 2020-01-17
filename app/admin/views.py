@@ -77,6 +77,10 @@ def post_edit(id):
     post = Post.query.get(id)
     form = PostForm()
 
+    #prefill forum 
+    form.title.data = post.title
+    form.body.data = post.body
+
     if form.validate_on_submit():
 
         #populate from form to object fields
@@ -88,6 +92,28 @@ def post_edit(id):
         return redirect(url_for('admin.users'))
     
     return render_template('admin/post/edit.html' , form=form , post= post)
+
+@admin.route('/post/new' , methods=['POST','GET'])
+def post_new():
+
+    form = PostForm()
+
+    if form.validate_on_submit():
+        #make a new post
+        p= Post(form.title.data , form.body.data ,current_user.id )
+        #save the post 
+        p.save()
+        
+        #print post id 
+        print(p.id)
+
+        flash("post has been added")
+        return redirect( url_for('admin.users'))
+
+    return render_template("admin/post/new.html" , form = form)
+
+
+
 
     
 

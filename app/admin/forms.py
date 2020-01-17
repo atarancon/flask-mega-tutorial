@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm 
-from wtforms import StringField,SelectField,TextField
+from wtforms import StringField,SelectField,TextField,TextAreaField
 
 from wtforms.validators import Optional, Length,DataRequired
 
@@ -52,8 +52,8 @@ class BulkDeleteForm(FlaskForm):
 
 class PostForm(FlaskForm):
     
-    title = TextField('title please', validators=[DataRequired(),Length(1,140)])
-    body = TextField('say somethig', validators=[DataRequired()])
+    title = TextAreaField('title please', validators=[DataRequired(),Length(1,140)])
+    body = TextAreaField('say somethig', validators=[DataRequired()])
     
 
     
