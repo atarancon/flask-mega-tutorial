@@ -18,7 +18,26 @@ var bulkSelectors= {
 
 //onready 
 $(document).ready(function () {
-    console.log( "ready!" );   
+    console.log( "ready!" );  
+    
+//Date formatting with moment js
+$('.from-now').each(function(i,e) {
+    (function updateTime () {
+        var time = moment($(e).data('datetime')).local();
+        $(e).text(time.fromNow());
+        $(e).attr('title',time.format('MMM Do YYYY , h:mm:ss a Z'));
+        setTimeout(updateTime , 1000)
+    }) ();
+});
+
+$('.short-date').each(function (i, e) {
+    var time = moment($(e).data('datetime')).local();
+    $(e).text(time.format('MMM Do YYYY'));
+    $(e).attr('title', time.format('MMMM Do YYYY, h:mm:ss a Z'));
+  });
+
+
+
   
 // Bulk delete
 $('body').on('change' , bulkSelectors.checkedItems,function() {

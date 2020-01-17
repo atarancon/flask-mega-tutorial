@@ -28,10 +28,13 @@
 
         <div class="form-group">
             <label class="control-label"><strong> Date of post </strong></label>
-            <p class="sm-margin-bottom form-control-static">
-                {{post.timestamp}}
+            <p>
+                <time class="from-now" data-datetime="{{post.timestamp }}">
+                    {{post.timestamp}}
+                </time>
             </p>
         </div>
+
         {% endif %}
 
     </div>
