@@ -17,7 +17,7 @@ from flask_login import (
 from app.users.decorators import permission_required
 from app.admin.models import Dashboard
 
-from app.models import User
+from app.models import User,Post
 
 from . import admin 
 
@@ -25,7 +25,8 @@ from sqlalchemy import text
 
 from app.admin.forms import (
     SearchForm,
-    BulkDeleteForm
+    BulkDeleteForm,
+    PostForm
 )
 
 @admin.before_request
@@ -70,6 +71,28 @@ def users_bulk_delete():
         flash('No users were deleted','error')
     
     return redirect(url_for('admin.users'))
+
+@admin.route('/post/edit/<int:id>' , methods=['GET','POST'])
+def post_edit(id):
+    post = Post.query.get(id)
+    form = PostForm()
+
+    if form.validate_on_submit():
+
+        #populate from form to object fields
+        form.populate_obj(post)
+        #save the object
+        post.save()
+
+        flash("Post has been updated successfully" , 'success')
+        return redirect(url_for('admin.users'))
+    
+    return render_template('admin/post/edit.html' , form=form , post= post)
+
+    
+
+
+        
 
 
 

@@ -205,6 +205,18 @@ class Post (db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+    
+
+
+
+    def save(self):
+        """
+        Save a model instance 
+        :return: Model instance 
+        """
+        db.session.add(self)
+        db.session.commit()
+        return self
 
 
 class Comment(db.Model):
