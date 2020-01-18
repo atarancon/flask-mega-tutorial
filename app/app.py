@@ -70,10 +70,12 @@ def register_blueprints(app):
     from app.users import user_blueprint
     from app.core import core
     from app.admin import admin
+    from app.post import post
     #register 
     app.register_blueprint(user_blueprint)
     app.register_blueprint(core)
     app.register_blueprint(admin)
+    app.register_blueprint(post)
 
 
 def authentication(app , user_model):

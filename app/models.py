@@ -218,6 +218,25 @@ class Post (db.Model):
         db.session.commit()
         return self
 
+    
+    @classmethod
+    def search(cls, query):
+        """
+        Search a resource by 1 or more fields.
+
+        :param query: Search query
+        :type query: str
+        :return: SQLAlchemy filter
+
+        """
+        if query == "":
+            return ''
+        
+        search_query = '%{0}%'.format(query)
+        search_chain = (Post.title.ilike(search_query)
+                        )
+        return or_(search_chain)
+
 
 class Comment(db.Model):
     
