@@ -1,0 +1,32 @@
+{% extends 'layouts/app.html' %}
+
+{% import 'macros/items.html' as items %}
+
+{% block title %} Post / List {% endblock %}
+
+{% block body %} 
+
+
+<div class="container">
+    {% for post in posts.items %}
+     <div class="card" >
+       <div class="card-body">
+         <h5 class = "card-title" > <a href="">   {{post.title}} </a> </h5> 
+         <p class="card-text"> Written by: {{post.author_p.username}} </p>
+         <p class="card-text"> Published on : {{post.timestamp.strftime("%Y-%m-%d")}} </p>
+       </div>
+     </div>
+    {% endfor %}
+
+</div>
+
+
+
+
+{{ items.paginate(posts)}}
+
+
+
+
+
+{% endblock %}
