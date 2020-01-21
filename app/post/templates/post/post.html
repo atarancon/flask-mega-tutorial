@@ -1,0 +1,61 @@
+{% extends 'layouts/app.html' %}
+
+{% block title %} Post / single {% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="title">
+        <h2> {{post.title}}</h2>
+    </div>
+
+    <div class="body">
+        <p> {{post.body}} </p>
+    </div>
+
+    <div class="timestamp">
+        <p> {{post.timestamp }} </p>
+    </div>
+
+
+    {% if current_user.is_admin %}
+
+    <div class='row col-md-12'>
+        <div class="col-md-6 justify-content-md-center">
+            <a href = "{{ url_for('admin.post_edit') }}" ></a>
+            <button type="submit" class='btn btn-primary btn-block'>
+                        edit
+            </button>
+        </div>
+        <div class="col-md-6">
+            <div class="visible-xs visible-sm sm-margin-top">
+                <a href="#"
+                        class="btn btn-danger ">
+                        delete
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {% endif }
+ 
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+    
+
+
