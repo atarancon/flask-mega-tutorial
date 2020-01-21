@@ -23,14 +23,13 @@
 
     <div class='row col-md-12'>
         <div class="col-md-6 justify-content-md-center">
-            <a href = "{{ url_for('admin.post_edit') }}" ></a>
-            <button type="submit" class='btn btn-primary btn-block'>
-                        edit
-            </button>
+            <a href = "{{ url_for('admin.post_edit' , id = post.id) }}" > 
+                <button type="button" class="btn btn-primary">Edit</button> 
+            </a>
         </div>
         <div class="col-md-6">
             <div class="visible-xs visible-sm sm-margin-top">
-                <a href="#"
+                <a href=" {{ url_for( 'admin.post_delete' , post_id = post.id ) }}"
                         class="btn btn-danger ">
                         delete
                 </a>
@@ -38,7 +37,7 @@
         </div>
     </div>
 
-    {% endif }
+    {% endif %}
  
 
 </div>

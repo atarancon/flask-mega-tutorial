@@ -238,6 +238,16 @@ class Post (db.Model):
         return or_(search_chain)
 
 
+    def delete(self):
+        """
+        Delete a model instance.
+
+        :return: db.session.commit()'s result
+        """
+        db.session.delete(self)
+        return db.session.commit()
+
+
 class Comment(db.Model):
     
     id = db.Column(db.Integer, primary_key = True)

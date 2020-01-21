@@ -4,7 +4,8 @@ from flask import (
     request,
     flash,
     url_for,
-    redirect
+    redirect,
+    abort
 )
 
 from flask_login import (
@@ -89,7 +90,7 @@ def post_edit(id):
         post.save()
 
         flash("Post has been updated successfully" , 'success')
-        return redirect(url_for('admin.users'))
+        return redirect(url_for('post.posts'))
     
     return render_template('admin/post/edit.html' , form=form , post= post)
 
@@ -107,11 +108,32 @@ def post_new():
         #print post id 
         print(p.id)
 
-        flash("post has been added")
-        return redirect( url_for('admin.users'))
+        flash("post has been added", 'success')
+        return redirect( url_for('post.posts'))
 
     return render_template("admin/post/new.html" , form = form)
 
+#deleting a single post
+@admin.route('/post/<int:post_id>/delete' , methods=['GET','POST'])
+def post_delete(post_id):
+    post = Post.query.get_or_404(post_id)
+    #only same admin can delete its posts
+
+    #get title 
+    post_title = post.title
+    
+    #check if current admin is author
+    if post.author_p != current_user:
+        flash("{0} Admin created post" .format(post.author_p) ) 
+        abort(403)
+
+    #delete post
+    post.delete()
+
+    #confirmation
+    flash("Post title:{0} deleted successfulyl " .format(post_title) , 'success' ) 
+
+    return redirect(url_for('post.posts'))
 
 
 

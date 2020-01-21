@@ -11,7 +11,7 @@
     {% for post in posts.items %}
      <div class="card" >
        <div class="card-body">
-         <h5 class = "card-title" > <a href="">   {{post.title}} </a> </h5> 
+         <h5 class = "card-title" > <a href="{{ url_for('post.single_post' , post_id = post.id) }}">   {{post.title}} </a> </h5> 
          <p class="card-text"> Written by: {{post.author_p.username}} </p>
          <p class="card-text"> Published on : {{post.timestamp.strftime("%Y-%m-%d")}} </p>
        </div>

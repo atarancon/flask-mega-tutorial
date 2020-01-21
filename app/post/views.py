@@ -17,11 +17,18 @@ from . import post
 
 #display all blogs list
 @post.route('/posts' , defaults = {'page'  : 1} )
-@post.route('/post/page/<int:page>')
+@post.route('page/<int:page>')
 def posts(page):
 
     paginated_posts = Post.query.filter(Post.search(text(request.args.get('q','')))).order_by(Post.timestamp.desc()).paginate(page,50,True)
     print("hello posts")
     return render_template('post/index.html' , posts = paginated_posts)
+
+#display single post 
+@post.route('single_post/<int:post_id>')
+def single_post(post_id):
+    blog_post = Post.query.get_or_404(post_id)
+    return render_template('post/post.html',post = blog_post)
+
 
 
