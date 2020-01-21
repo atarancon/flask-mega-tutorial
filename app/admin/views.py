@@ -30,6 +30,9 @@ from app.admin.forms import (
     PostForm
 )
 
+from datetime import datetime , timezone
+
+
 @admin.before_request
 @login_required
 @permission_required()
@@ -76,16 +79,26 @@ def users_bulk_delete():
 @admin.route('/post/edit/<int:id>' , methods=['GET','POST'])
 def post_edit(id):
     post = Post.query.get(id)
-    form = PostForm()
 
-    #prefill forum 
-    form.title.data = post.title
-    form.body.data = post.body
+    #prefill forum with with post object
+    form = PostForm(obj=post)
 
     if form.validate_on_submit():
 
+        print(" form title text")
+        print(form.title.data)
+
         #populate from form to object fields
         form.populate_obj(post)
+
+        #updating the time
+        post.timestamp=datetime.now(timezone.utc)
+
+        #update author 
+        post.author_p = current_user
+
+
+        print("done")
         #save the object
         post.save()
 

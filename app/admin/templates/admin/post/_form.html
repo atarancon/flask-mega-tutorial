@@ -29,7 +29,7 @@
         <div class="form-group">
             <label class="control-label"><strong> Date of post </strong></label>
             <p>
-                <time class="from-now" data-datetime="{{post.timestamp }}">
+                <time class="from-now" data-datetime="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%S Z') }}">
                     {{post.timestamp}}
                 </time>
             </p>

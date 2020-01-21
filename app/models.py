@@ -201,6 +201,7 @@ class Post (db.Model):
         self.title = title
         self.body = body 
         self.user_id = user_id
+        self.timestamp = datetime.utcnow()
 
 
     def __repr__(self):
