@@ -77,3 +77,14 @@
     </div>
   {% endcall %}
 {%- endmacro -%}
+
+{# Render a form for searching in the post. #}
+{%- macro  post_search(endpoint) -%}
+  {% call form_tag(endpoint, method='get') %}
+    <div class="input-group ">
+      <input type="text" class="form-control input-lg"
+             id="q" name="q" value="{{ request.args.get('q', '') }}"
+             placeholder="Search by typing, then press enter...">
+    </div>
+  {% endcall %}
+{%- endmacro -%}
