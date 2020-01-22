@@ -6,6 +6,21 @@
 
 {% block body %} 
 
+<div class='container' class="mb-auto">
+
+  <div class='row' >
+
+    <div class='col-10'>
+      <input type="text" class="form-control input-lg" name="firstname" placeholder="search">
+    </div>
+
+    <div class="col-2">
+      <button type="button" class="btn btn-primary"> Add Post</button>
+    </div>
+    
+  </div>
+</div>
+
 
 <div class="container">
     {% for post in posts.items %}
