@@ -2,6 +2,8 @@
 
 {% import 'macros/items.html' as items %}
 
+{% import 'macros/form.html' as f with context %}
+
 {% block title %} Post / List {% endblock %}
 
 {% block body %} 
@@ -11,7 +13,10 @@
   <div class='row' >
 
     <div class='col-10'>
-      <input type="text" class="form-control input-lg" name="firstname" placeholder="search">
+
+      {{ f.post_search('post.posts')}}
+
+      <!-- <input type="text" class="form-control input-lg" name="firstname" placeholder="search"> -->
     </div>
 
     <div class="col-2">
