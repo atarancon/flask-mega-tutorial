@@ -234,9 +234,8 @@ class Post (db.Model):
             return ''
         
         search_query = '%{0}%'.format(query)
-        search_chain = (Post.title.ilike(search_query)
-                        )
-        return or_(search_chain)
+        search_chain = (Post.title.ilike(search_query) , Post.body.ilike(search_query))
+        return or_(*search_chain)
 
 
     def delete(self):
