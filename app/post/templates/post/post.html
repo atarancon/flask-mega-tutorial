@@ -15,7 +15,8 @@
     </div>
 
     <div class="timestamp">
-        <p> {{post.timestamp }} </p>
+        <p> Posted on: <time class="short-date" data-datetime="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%S Z') }}">
+        </time>  </p>
     </div>
 
 
