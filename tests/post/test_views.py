@@ -82,6 +82,19 @@ class TestDeletePost(ViewTestMixin):
         assert_status_with_message ( 200 , response,"Post title:{0} deleted successfulyl " .format(post.title) )
 
 
+class TestSearchPost(ViewTestMixin):
+    def test_search_post(self):
+
+        params = {
+            'q' : ""
+        }
+
+        response = self.client.post( url_for('post.posts') , data = params , follow_redirects=True)
+
+    
+
+
+
 
 
 
