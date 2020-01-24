@@ -264,6 +264,16 @@ class Comment(db.Model):
         self.user_id = user_id 
         self.post_id = post_id 
 
+    
+    def save(self):
+        """
+        Save a model instance 
+        :return: Model instance 
+        """
+        db.session.add(self)
+        db.session.commit()
+        return self
+
 
 
 
