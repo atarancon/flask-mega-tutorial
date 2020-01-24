@@ -29,6 +29,22 @@ def posts(page):
 #display single post 
 @post.route('single_post/<int:post_id>')
 def single_post(post_id):
+
+    #1++++++#Query the post for comments 
+
+    #paginate the list of comment 
+
+    #send it to template
+
+    #2++++#Get Comment Forum 
+
+    #validate for submision 
+
+    #fill it up 
+
+    #add to database
+
+    #return to same template 
     
     blog_post = Post.query.get_or_404(post_id)
     return render_template('post/post.html',post = blog_post )
