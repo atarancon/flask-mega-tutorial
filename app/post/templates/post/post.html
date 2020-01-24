@@ -1,5 +1,7 @@
 {% extends 'layouts/app.html' %}
 
+{% import 'macros/form.html' as f with context %}
+
 {% block title %} Post / single {% endblock %}
 
 {% block body %}
@@ -37,6 +39,34 @@
             </div>
         </div>
     </div>
+
+    {% endif %}
+
+    {% for comment in  comments.item %}
+    <div class="card" >
+        <div class="card-body">
+          <p class="card-text"> {{comment.text}} </p>
+         </time> </p>
+        </div>
+      </div>
+    {% endfor %}
+
+
+    {% if current_user.is_authenticated %}
+
+    {% call f.form_tag('users.login') %}
+
+    {% call f.form_group (form.text) %}
+    {% endcall %}
+
+    {% call f.form_group (form.submit) %}
+    {% endcall %}
+
+    {% endcall %}
+
+
+    {% else %}
+      <p> Please <a href=" {{ url_for('users.login') }}"> Login</a> to Add Comment </p>
 
     {% endif %}
  
