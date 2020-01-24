@@ -24,7 +24,6 @@ def posts(page):
 
     search_form = SearchForm()
     paginated_posts = Post.query.filter(Post.search(text(request.args.get('q','')))).order_by(Post.timestamp.desc()).paginate(page,50,True)
-    print("hello posts")
     return render_template('post/index.html' , posts = paginated_posts , form= search_form)
 
 #display single post 
