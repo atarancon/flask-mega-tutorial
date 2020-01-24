@@ -42,7 +42,7 @@
 
     {% endif %}
 
-    {% for comment in  comments.item %}
+    {% for comment in  comments.items %}
     <div class="card" >
         <div class="card-body">
           <p class="card-text"> {{comment.text}} </p>
@@ -54,7 +54,7 @@
 
     {% if current_user.is_authenticated %}
 
-    {% call f.form_tag('users.login') %}
+    {% call f.form_tag('post.single_post', post_id = post.id) %}
 
     {% call f.form_group (form.text) %}
     {% endcall %}

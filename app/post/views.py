@@ -31,6 +31,8 @@ def posts(page):
 @post.route('single_post/<int:post_id>' , methods=["POST" , "GET"])
 def single_post(post_id):
 
+    blog_post = Post.query.get_or_404(post_id)
+
     #1++++++#Query the post for comments 
     #paginate the list of comment 
     page = request.args.get('page',1,type=int)
@@ -45,19 +47,19 @@ def single_post(post_id):
     #validate for submision 
     if form.validate_on_submit():
     #fill it up 
-       c = Comment(form.text.data , Post.author_p.user_id , Post.id)
+       c = Comment(form.text.data , blog_post.user_id , blog_post.id)
 
        c.save()
 
        flash("Comment has been added successfully","success")
-       return render_template( url_for('post.single_post' , post_id = post_id))
+       #return render_template( url_for('post.single_post' , post_id = post_id))
 
 
     #add to database
+    #paginated_comment = Comment.query.order_by(Comment.timestamp.desc()).paginate(page ,50 , True)
 
     #return to same template 
     
-    blog_post = Post.query.get_or_404(post_id)
     return render_template('post/post.html',post = blog_post , comments =paginated_comment , form = form )
 
 
