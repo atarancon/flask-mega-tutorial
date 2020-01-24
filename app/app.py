@@ -71,11 +71,13 @@ def register_blueprints(app):
     from app.core import core
     from app.admin import admin
     from app.post import post
+    from app.comment import comment
     #register 
     app.register_blueprint(user_blueprint)
     app.register_blueprint(core)
     app.register_blueprint(admin)
     app.register_blueprint(post)
+    app.register_blueprint(comment)
 
 
 def authentication(app , user_model):
