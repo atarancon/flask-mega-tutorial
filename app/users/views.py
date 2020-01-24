@@ -46,6 +46,8 @@ def login():
 
             #handle optional redirecting
             next_url = request.form.get('next')
+            
+            print(next_url)
 
             #caution checking path of url
             if next_url:
