@@ -59,8 +59,8 @@ def single_post(post_id):
     #paginated_comment = Comment.query.order_by(Comment.timestamp.desc()).paginate(page ,50 , True)
 
     #return to same template 
-    
-    return render_template('post/post.html',post = blog_post , comments =paginated_comment , form = form )
+
+    return render_template('post/post.html',post = blog_post , comments =paginated_comment ,form = form )
 
 
 
