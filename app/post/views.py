@@ -37,7 +37,7 @@ def single_post(post_id):
     #paginate the list of comment 
     page = request.args.get('page',1,type=int)
 
-    paginated_comment = Comment.query.order_by(Comment.timestamp.desc()).paginate(page ,50 , True)
+    paginated_comment = Comment.query.filter(Comment.post_id == blog_post.id).order_by(Comment.timestamp.desc()).paginate(page ,50 , True)
 
     #send it to template
 

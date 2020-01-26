@@ -4,7 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
 
     TESTING = os.environ.get('TESTING') or False
-    debug = os.environ.get('DEBUG') or   True
+    DEBUG = os.environ.get('DEBUG') or   True
     SECRET_KEY = os.environ.get('SECRET_KEY')
     #set configuration for database location
     SQLALCHEMY_DATABASE_URI=os.environ.get('DATABASE_URL') or \

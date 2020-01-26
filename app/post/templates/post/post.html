@@ -13,7 +13,7 @@
     </div>
 
     <div class="body">
-        <p> {{post.body}} </p>
+        <p  class="lead mb-4" > {{post.body}} </p>
     </div>
 
     <div class="timestamp">
@@ -42,11 +42,20 @@
 
     {% endif %}
 
+    <h4  style="text-align: right" ><a name="comments"></a> {{ comments.total }} comments</h4>
+
     {% for comment in  comments.items %}
     <div class="card" >
         <div class="card-body">
+            <div class="comment-body">
+                <p>
+                    <span class="label label-default text-muted ">#{{comment.user_id}}</span> <span style="font-weight: bold;" class="label label-primary"> {{comment.author_c.username}}</span> said
+                    <span class="" data-timestamp="2013-05-31T23:33:26Z" data-format="fromNow(0)" data-refresh="0">7 years ago</span>
+                </p>
+            </div>
+
           <p class="card-text"> {{comment.text}} </p>
-         </time> </p>
+
         </div>
       </div>
     {% endfor %}
