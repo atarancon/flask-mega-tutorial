@@ -17,8 +17,12 @@
     </div>
 
     <div class="timestamp">
-        <p> Posted on: <time class="short-date" data-datetime="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%S Z') }}">
-        </time>  </p>
+        <span> Posted on: <time class="short-date" data-datetime="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%S Z') }}">
+        </time>  
+        </span>
+
+        <span style="float: right"> Written by: {{post.author_p.username }} </span>
+
     </div>
 
 
@@ -50,7 +54,11 @@
             <div class="comment-body">
                 <p>
                     <span class="label label-default text-muted ">#{{comment.user_id}}</span> <span style="font-weight: bold;" class="label label-primary"> {{comment.author_c.username}}</span> said
-                    <span class="" data-timestamp="2013-05-31T23:33:26Z" data-format="fromNow(0)" data-refresh="0">7 years ago</span>
+                    <span>
+                        <time class="from-now" data-datetime="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%S Z') }}">
+                            {{post.timestamp}}
+                        </time> 
+                    </span>
                 </p>
             </div>
 
