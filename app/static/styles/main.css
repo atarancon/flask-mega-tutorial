@@ -22,3 +22,16 @@ th#bulk_actions {
     font-weight: 400;
     font-size: 12px;
 }
+
+/* SINGLE POST 
+_________________________*/
+div.byline {
+ margin-top: 16px;
+ margin-bottom: 16px;
+ padding-bottom: 4px;
+ border-bottom: 1px solid #ccc;
+}
+
+#post .body {
+    margin-bottom: 20px;
+}
