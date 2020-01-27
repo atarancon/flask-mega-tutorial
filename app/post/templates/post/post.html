@@ -8,20 +8,30 @@
 
 <div class="container">
 
-    <div class="title">
-        <h2> {{post.title}}</h2>
+    <div id='post'>
+
+    <div class=" mt-5 title">
+        <h1> {{post.title}}</h1>
+    </div>
+
+    <div class="byline">
+        <span class="byline_name">By:  {{post.author_p.username }} </span>
+
+        <div class="timestamp">
+            <span> Posted on: <time class="short-date" data-datetime="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%S Z') }}">
+            </time>  
+            </span>
+        </div>
+
     </div>
 
     <div class="body">
         <p  class="lead mb-4" > {{post.body}} </p>
     </div>
 
-    <div class="timestamp">
-        <span> Posted on: <time class="short-date" data-datetime="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%S Z') }}">
-        </time>  
-        </span>
+    
 
-        <span style="float: right"> Written by: {{post.author_p.username }} </span>
+
 
     </div>
 
@@ -88,6 +98,7 @@
 
     {% endif %}
  
+  </div>
 
 </div>
 
