@@ -9,4 +9,4 @@ from wtforms.validators import Optional , DataRequired, Length
 
 class CommentForm(FlaskForm):
     text = TextAreaField('Add a comment', validators=[DataRequired(),Length(1,140)])
-    submit = SubmitField(label='submit')
+    submit = SubmitField("Comment")
