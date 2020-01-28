@@ -252,7 +252,7 @@ class Comment(db.Model):
     
     id = db.Column(db.Integer, primary_key = True)
     text = db.Column(db.String(140), nullable = False) 
-    timestamp = db.Column(db.DateTime, default= datetime.utcnow)
+    timestamp = db.Column(db.DateTime, default= datetime.utcnow())
     #refer back to particular user 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     #refer back to particular post 
@@ -263,6 +263,7 @@ class Comment(db.Model):
         self.text = text 
         self.user_id = user_id 
         self.post_id = post_id 
+        self.timestamp = datetime.utcnow()
 
     
     def save(self):
