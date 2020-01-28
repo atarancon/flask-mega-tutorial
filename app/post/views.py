@@ -45,21 +45,17 @@ def single_post(post_id):
     form = CommentForm()
 
     #validate for submision 
-    if form.validate_on_submit():
+    if form.validate_on_submit() :
     #fill it up 
        c = Comment(form.text.data , blog_post.user_id , blog_post.id)
 
        c.save()
 
        flash("Comment has been added successfully","success")
-       #return render_template( url_for('post.single_post' , post_id = post_id))
+       return redirect(url_for('post.single_post', post_id = post_id))
 
-
-    #add to database
-    #paginated_comment = Comment.query.order_by(Comment.timestamp.desc()).paginate(page ,50 , True)
 
     #return to same template 
-
     return render_template('post/post.html',post = blog_post , comments =paginated_comment ,form = form )
 
 
