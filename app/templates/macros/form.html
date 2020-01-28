@@ -43,6 +43,9 @@
   {% if f.type == 'BooleanField' %}
       <div class="checkbox {{ css_class }}">
     {{ checkbox_field(f, **kwargs) }}
+  {% elif f.type == 'SubmitField' %}
+        {{ field (f , css_class="btn btn-default" ,**kwargs) }}
+  
   {% else %}
       <div class="form-group {{ css_class }}">
     {{ field_label(f) }}
