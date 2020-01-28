@@ -57,26 +57,30 @@
     {% endif %}
 
     <h4  style="text-align: right" ><a name="comments"></a> {{ comments.total }} comments</h4>
-
+<div class="comment">
     {% for comment in  comments.items %}
-    <div class="card" >
-        <div class="card-body">
-            <div class="comment-body">
-                <p>
-                    <span class="label label-default text-muted ">#{{comment.user_id}}</span> <span style="font-weight: bold;" class="label label-primary"> {{comment.author_c.username}}</span> said
-                    <span>
-                        <time class="from-now" data-datetime="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%S Z') }}">
+    
+        <div class="card" >
+            <div class="card-body">
+                <div class="comment-header">
+                    <p>
+                        <span class="label label-default text-muted ">#{{comment.user_id}}</span> <span style="font-weight: bold;" class="label label-primary"> {{comment.author_c.username}}</span> said
+                        <span>
+                            <time class="from-now" data-datetime="{{ post.timestamp.strftime('%Y-%m-%dT%H:%M:%S Z') }}">
                             {{post.timestamp}}
-                        </time> 
-                    </span>
-                </p>
+                            </time> 
+                        </span>
+                    </p>
+                </div>
+
+                    <p class="card-text"> {{comment.text}} </p>
+
             </div>
-
-          <p class="card-text"> {{comment.text}} </p>
-
         </div>
-      </div>
+
     {% endfor %}
+
+ </div>
 
 
     {% if current_user.is_authenticated %}
@@ -86,7 +90,7 @@
     {% call f.form_group (form.text) %}
     {% endcall %}
 
-    {% call f.form_group (form.submit) %}
+    {% call f.form_group ( form.submit , css_class="btn btn-default") %}
     {% endcall %}
 
     {% endcall %}
