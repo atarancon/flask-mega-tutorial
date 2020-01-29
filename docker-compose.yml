@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+    website:
+        build: .
+        command: >
+            gunicorn -b 0.0.0.0:8000 
+            --access-logfile - 
+            --reload 
+            "app.app:create_app('config.setting.DevConfig')"
+        env_file:
+            - '.env'
+        volumes:
+            - '.:/app'
+        ports:
+            - '8000:8000'
+
