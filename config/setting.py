@@ -26,7 +26,6 @@ class DevConfig(Config):
     FLASK_DEBUG=1
     #give you pin 
     DEBUG = True
-    ENV='development'
     #ENV  = 'development'
     #TESTING = True
     SECRET_KEY = os.urandom(16)
@@ -34,6 +33,7 @@ class DevConfig(Config):
     # User.
     SEED_ADMIN_EMAIL = 'dev@local.host'
     SEED_ADMIN_PASSWORD = 'devpassword'
+
 
 class TestConfig(Config):
     DEBUG = False

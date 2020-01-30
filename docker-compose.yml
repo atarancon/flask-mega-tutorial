@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+    postgres:
+        image: 'postgres'
+        env_file:
+        - '.env'
+        volumes:
+        - 'postgres:/var/lib/postgresql/data'
+
     website:
         build: .
         command: >
@@ -14,4 +21,12 @@ services:
             - '.:/app'
         ports:
             - '8000:8000'
+        depends_on:
+            - postgres
+
+volumes:
+    postgres:
+    
+
+
 

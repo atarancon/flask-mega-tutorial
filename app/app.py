@@ -34,6 +34,7 @@ def create_app(config_filename = 'config.setting.DevConfig', settings_override=N
     print( app.config['ENV'])
     print( app.config['DEBUG'])
     print( app.config['SECRET_KEY'])
+    print( app.config ['SQLALCHEMY_DATABASE_URI'])
 
     if settings_override:
         app.config.update(settings_override)
