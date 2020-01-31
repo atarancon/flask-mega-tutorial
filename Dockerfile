@@ -11,7 +11,7 @@ WORKDIR $INSTALL_PATH
 COPY requirements.txt requirements.txt
 
 RUN pip install --upgrade pip
-RUN pip install sqlalchemy-utils 
+RUN pip install sqlalchemy-utils
 RUN pip install -r requirements.txt
 
 COPY . .
