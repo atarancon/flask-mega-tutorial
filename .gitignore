@@ -3,6 +3,8 @@
 
 #Environment variables 
 .flaskenv
+.env-prod 
+.env.prod
 ###################
 instance/
 node_modules/
@@ -10,6 +12,9 @@ someOtherfolder/
 __pycache__/
 migrations/
 data.sqlite
+*.pyc
+__pycache
+.DS_Store
 
 #####configsql#########
 config/*.db_test
