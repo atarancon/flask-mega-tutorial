@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+    postgres:
+        image: 'postgres'
+        env_file:
+        - '.env-prod'
+        volumes:
+        - 'postgres:/var/lib/postgresql/data'
+
+    website:
+        build: .
+        command: >
+            gunicorn -b 0.0.0.0:8000 
+            --access-logfile - 
+            --reload 
+            "app.app:create_app('config.setting.ProdConfig')"
+        env_file:
+            - '.env-prod'
+        volumes:
+            - '.:/app'
+        ports:
+            - '8000:8000'
+        depends_on:
+            - postgres
+
+volumes:
+    postgres:
