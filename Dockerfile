@@ -32,6 +32,12 @@ RUN chown -R app:app $INSTALL_PATH
 # change to the app user
 USER app
 
+ENV PORT=8000
+# Run the app.  CMD is required to run on Heroku
+# $PORT is set by Heroku			
+
+CMD gunicorn --bind 0.0.0.0:$PORT  "app.app:create_app('config.setting.ProdConfig')"
+ 
 
  
 
