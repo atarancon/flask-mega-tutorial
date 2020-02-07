@@ -20,6 +20,7 @@ class Config:
 class ProdConfig(Config):
     DEBUG = False
     TESTING = False
+    SECRET_KEY = os.urandom(16)
 
 class DevConfig(Config):
     #export 
